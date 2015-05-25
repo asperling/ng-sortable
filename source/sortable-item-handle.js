@@ -84,6 +84,8 @@
           */
           dragListen = function (event) {
 
+            event.preventDefault();
+
             var unbindMoveListen = function () {
               angular.element($document).unbind('mousemove', moveListen);
               angular.element($document).unbind('touchmove', moveListen);
@@ -91,7 +93,7 @@
               element.unbind('touchend', unbindMoveListen);
               element.unbind('touchcancel', unbindMoveListen);
             };
-            
+
             var startPosition;
             var moveListen = function (e) {
               e.preventDefault();
@@ -104,7 +106,7 @@
                 dragStart(event);
               }
             };
-            
+
             angular.element($document).bind('mousemove', moveListen);
             angular.element($document).bind('touchmove', moveListen);
             element.bind('mouseup', unbindMoveListen);
